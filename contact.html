@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact - Morgan Maxwell</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background-color: #1f1f1f;
+        color: #e0e0e0;
+      }
+      main {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        background-color: #000000;
+      }
+      .contact-section {
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+      }
+      .contact-heading {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(45deg, #90caf9, #e0e0e0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .contact-subtitle {
+        font-size: 1.1rem;
+        color: #e0e0e0;
+        margin-bottom: 2rem;
+      }
+      .contact-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+      .contact-card {
+        background-color: #1f1f1f;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        padding: 1rem 1.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid transparent;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: #e0e0e0;
+        width: 100%;
+        max-width: 400px;
+      }
+      .contact-card:hover {
+        transform: scale(1.05);
+        border-color: #90caf9;
+      }
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+      }
+      .contact-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        flex-grow: 1;
+      }
+      .contact-title {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin: 0;
+        color: #90caf9;
+      }
+      .contact-detail {
+        font-size: 0.9rem;
+        color: #e0e0e0;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes fadeInBottom {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .contact-heading.animate {
+        animation: fadeInUp 0.6s ease-out;
+      }
+      .contact-subtitle.animate {
+        animation: fadeInUp 0.6s ease-out 0.2s;
+      }
+      .animate-left {
+        animation: slideLeft 0.6s ease-out;
+      }
+      .animate-bottom {
+        animation: fadeInBottom 0.6s ease-out;
+      }
+      .animate-right {
+        animation: slideRight 0.6s ease-out;
+      }
+      .nav-link {
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #90caf9 !important;
+        text-shadow: 0 0 10px #90caf9;
+        transform: scale(1.05);
+      }
+      .whatsapp-title {
+        color: #e0f7fa;
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        text-shadow: 0 0 5px #e0f7fa;
+      }
+      .email-title {
+        color: #f3e5f5;
+        font-family: 'Georgia', serif;
+        font-weight: bold;
+        text-shadow: 0 0 5px #f3e5f5;
+      }
+      .linkedin-title {
+        color: #e8f5e8;
+        font-family: 'Verdana', sans-serif;
+        font-weight: bold;
+        text-shadow: 0 0 5px #e8f5e8;
+      }
+      @keyframes riseUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rise-animate {
+        animation: riseUp 0.8s ease-out;
+      }
+      #mobile-menu {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        width: 100%;
+        background-color: #121212;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+      }
+      #mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      #mobile-menu a {
+        color: #e0e0e0;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #333;
+      }
+      #mobile-menu a:hover {
+        color: #90caf9;
+      }
+      @media (min-width: 992px) {
+        #mobile-menu {
+          display: none;
+        }
+      }
+      .welcome-text {
+        font-style: italic;
+        color: #90caf9;
+        text-shadow: 0 0 5px #90caf9;
+        font-size: 1.1rem;
+        font-weight: bold;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 5px #90caf9;
+        }
+        to {
+          text-shadow: 0 0 10px #90caf9, 0 0 20px #90caf9;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+          <div class="d-block d-lg-none welcome-text">Enjoy your visit</div>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            id="navbar-toggler"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav w-100 justify-content-around d-none d-lg-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="About Me.html"
+                ><i class="fas fa-user"></i> About Me</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sample-work.html"
+                ><i class="fas fa-project-diagram"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skills-certificates.html"
+                ><i class="fas fa-star"></i> Skills & Certificates</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="experience.html"
+                ><i class="fas fa-graduation-cap"></i> Experience &
+                Education</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="About Me.html"><i class="fas fa-user"></i> About Me</a>
+        <a href="sample-work.html"><i class="fas fa-project-diagram"></i> Projects</a>
+        <a href="skills-certificates.html"><i class="fas fa-star"></i> Skills & Certificates</a>
+        <a href="experience.html"><i class="fas fa-graduation-cap"></i> Experience & Education</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </header>
+    <main>
+      <section class="contact-section">
+        <h1 class="contact-heading text-primary fw-bold">Let’s Connect!</h1>
+        <p class="contact-subtitle text-info fst-italic">
+          I’d love to collaborate with you or discuss new opportunities.
+        </p>
+        <div class="contact-container">
+          <a
+            href="https://wa.me/201557643908"
+            target="_blank"
+            class="contact-card"
+            rel="noopener noreferrer"
+          >
+            <img src="WhatsApp.png" alt="WhatsApp" class="contact-icon" />
+            <div class="contact-text">
+              <p class="contact-title whatsapp-title">WhatsApp</p>
+              <p class="contact-detail text-light"></p>
+            </div>
+          </a>
+          <a
+            href="mailto:omarsawan719@gmail.com"
+            target="_blank"
+            class="contact-card"
+            rel="noopener noreferrer"
+          >
+            <img src="Gmaillogo.jpg" alt="Email" class="contact-icon" />
+            <div class="contact-text">
+              <p class="contact-title email-title">Email</p>
+              <p class="contact-detail text-muted"></p>
+            </div>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/omarheshamsalah/"
+            target="_blank"
+            class="contact-card"
+            rel="noopener noreferrer"
+          >
+            <img src="LinkedinLogo.png" alt="LinkedIn" class="contact-icon" />
+            <div class="contact-text">
+              <p class="contact-title linkedin-title">LinkedIn</p>
+              <p class="contact-detail"></p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+    <script>
+      const toggler = document.getElementById('navbar-toggler');
+      const menu = document.getElementById('mobile-menu');
+      toggler.addEventListener('click', () => {
+        menu.classList.toggle('active');
+      });
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('active');
+        });
+      });
+    </script>
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('rise-animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(document.querySelector('.contact-section'));
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

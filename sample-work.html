@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample Work - Morgan Maxwell</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .nav-link {
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #90caf9 !important;
+        text-shadow: 0 0 10px #90caf9;
+        transform: scale(1.05);
+      }
+      @keyframes riseUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rise-animate {
+        animation: riseUp 0.8s ease-out;
+      }
+      #mobile-menu {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        width: 100%;
+        background-color: #121212;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+      }
+      #mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      #mobile-menu a {
+        color: #e0e0e0;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #333;
+      }
+      #mobile-menu a:hover {
+        color: #90caf9;
+      }
+      @media (min-width: 992px) {
+        #mobile-menu {
+          display: none;
+        }
+      }
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #90caf9;
+        text-shadow: 0 0 10px #90caf9;
+      }
+      .project-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+        text-align: center;
+        height: 100%;
+      }
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 40px rgba(0, 255, 255, 0.4), 0 0 30px #00ffff;
+        border: 1px solid #00bcd4;
+      }
+      .project-img {
+        width: 120%;
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+        margin-bottom: 1rem;
+      }
+      .project-card:hover .project-img {
+        transform: scale(1.05);
+      }
+      .project-card h3 {
+        color: #00bcd4;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+      .project-card p {
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+      .view-more-btn {
+        background: linear-gradient(45deg, #00bcd4, #0097a7);
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+      .view-more-btn:hover {
+        background: linear-gradient(45deg, #0097a7, #00bcd4);
+        transform: scale(1.05);
+      }
+      .modal-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        color: #e0e0e0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .modal-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .modal-body p {
+        line-height: 1.6;
+      }
+      .data-prep-images {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+      .image-container {
+        flex: 1;
+        text-align: center;
+      }
+      .modal-img {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        max-width: 100%;
+      }
+      .modal-img:hover {
+        transform: scale(1.05);
+      }
+      .image-caption {
+        font-size: 0.9rem;
+        color: #bbb;
+        margin-top: 0.5rem;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-in;
+      }
+      @media (max-width: 768px) {
+        .data-prep-images {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+      }
+      .welcome-text {
+        font-style: italic;
+        color: #90caf9;
+        text-shadow: 0 0 5px #90caf9;
+        font-size: 1.1rem;
+        font-weight: bold;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 5px #90caf9;
+        }
+        to {
+          text-shadow: 0 0 10px #90caf9, 0 0 20px #90caf9;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div
+          class="container-fluid d-flex justify-content-between align-items-center"
+        >
+          <div class="d-block d-lg-none welcome-text">Enjoy your visit</div>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            id="navbar-toggler"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav w-100 justify-content-around d-none d-lg-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="About Me.html"
+                ><i class="fas fa-user"></i> About Me</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sample-work.html"
+                ><i class="fas fa-project-diagram"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skills-certificates.html"
+                ><i class="fas fa-star"></i> Skills & Certificates</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="experience.html"
+                ><i class="fas fa-graduation-cap"></i> Experience & Education</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="About Me.html"><i class="fas fa-user"></i> About Me</a>
+        <a href="sample-work.html"
+          ><i class="fas fa-project-diagram"></i> Projects</a
+        >
+        <a href="skills-certificates.html"
+          ><i class="fas fa-star"></i> Skills & Certificates</a
+        >
+        <a href="experience.html"
+          ><i class="fas fa-graduation-cap"></i> Experience & Education</a
+        >
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </header>
+    <main
+      style="
+        margin-top: 80px;
+        padding: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 80px);
+      "
+    >
+      <section class="projects-section">
+        <h2 class="section-title text-center">My Projects</h2>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="project-card rise-animate">
+                <img
+                  src="project1.png"
+                  alt="Sales Insights Dashboard"
+                  class="img-fluid project-img"
+                />
+                <h3>Sales Insights Dashboard (Excel)</h3>
+                <p>
+                  An Excel dashboard providing key sales insights, including top
+                  10 countries, quarterly trends, product categories, and
+                  customer languages. With timeline and country slicers, it
+                  helps track performance across years and regions.
+                </p>
+                <button
+                  class="btn btn-primary view-more-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#project1Modal"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="project-card rise-animate">
+                <img
+                  src="project2.png"
+                  alt="Advanced Sales Dashboard"
+                  class="img-fluid project-img"
+                />
+                <h3>Advanced Sales Dashboard (Excel with Power Pivot)</h3>
+                <p>
+                  An advanced Excel dashboard built with Power Pivot and Power
+                  Query to model large datasets across multiple files. Delivered
+                  insights on top customers, salespersons, products, demand by
+                  region, sales trends, and order success rates — with fully
+                  interactive filters.
+                </p>
+                <button
+                  class="btn btn-primary view-more-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#project2Modal"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="project-card rise-animate">
+                <img
+                  src="project3.png"
+                  alt="Café Sales Dashboard"
+                  class="img-fluid project-img"
+                />
+                <h3>Café Sales Dashboard (Excel)</h3>
+                <p>
+                  An interactive Excel dashboard for café sales. Cleaned raw,
+                  inconsistent data and built a tool to monitor revenue, product
+                  performance, payment methods, order types, and sales trends —
+                  enabling data-driven operational decisions.
+                </p>
+                <button
+                  class="btn btn-primary view-more-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#project3Modal"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modals -->
+    <div
+      class="modal fade"
+      id="project1Modal"
+      tabindex="-1"
+      aria-labelledby="project1ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="project1ModalLabel">
+              Sales Insights Dashboard (Excel)
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              This was my first step into data dashboards using Microsoft Excel
+              — a project I’m proud of.<br /><br />
+              The dashboard delivers key sales insights, including:<br />
+              • Top 10 countries by total sales<br />
+              • Quarterly sales trends throughout the year<br />
+              • Sales by product category<br />
+              • Most common customer languages<br /><br />
+              It also features interactive filters like a Timeline slicer and
+              Country slicer, making it easier to analyze trends by year or
+              region.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="project2Modal"
+      tabindex="-1"
+      aria-labelledby="project2ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="project2ModalLabel">
+              Advanced Sales Dashboard (Excel with Power Pivot)
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              This dashboard marked a milestone in my journey — larger datasets
+              and more professional modeling.<br /><br />
+              I used Power Pivot to connect tables across multiple Excel files,
+              ensuring performance and flexibility, and Power Query for
+              transformations.<br /><br />
+              Key insights include:<br />
+              • Top 10 Customers by Invoice Amount<br />
+              • Top 10 Salespersons by Total Sales<br />
+              • Top Selling Products<br />
+              • Geographical Demand Analysis<br />
+              • Sales Trends Over Time<br />
+              • Order Success vs Failure Rates<br /><br />
+              Tools used: Power Pivot, Power Query, Pivot Charts, Slicers &
+              Timeline.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="project3Modal"
+      tabindex="-1"
+      aria-labelledby="project3ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="project3ModalLabel">
+              Café Sales Dashboard (Excel)
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              I designed an interactive Excel dashboard to analyze café sales.
+              The raw data was messy, with duplicates, missing values, and
+              errors — so I first cleaned and prepared it properly.
+            </p>
+
+            <h6>Data Preparation</h6>
+            <div class="data-prep-images">
+              <div class="image-container">
+                <img
+                  src="before.png"
+                  alt="Before Cleaning"
+                  class="img-fluid modal-img fade-in"
+                />
+                <p class="image-caption">Before Cleaning</p>
+              </div>
+              <div class="image-container">
+                <img
+                  src="after.png"
+                  alt="After Cleaning"
+                  class="img-fluid modal-img fade-in"
+                />
+                <p class="image-caption">After Cleaning</p>
+              </div>
+            </div>
+            <p>
+              The cleaning process involved removing duplicates, handling
+              missing values, correcting inconsistencies such as product names
+              and payment method spelling, and standardizing formats to ensure
+              data accuracy and reliability.
+            </p>
+
+            <p>
+              Key insights include:<br />
+              • Total orders and revenue with average revenue per order<br />
+              • Monthly sales trends<br />
+              • Orders and revenue by product category<br />
+              • Payment method distribution (Cash – Credit – Digital Wallet)<br />
+              • Dine-in vs Takeaway orders<br />
+              • Quantity sold per product for inventory planning<br /><br />
+              This dashboard helps management track performance, understand
+              customer behavior, and optimize decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add("rise-animate");
+                observer.unobserve(entry.target);
+              }, index * 200); // Staggered delay
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll(".project-card").forEach((card) => {
+        observer.observe(card);
+      });
+
+      const toggler = document.getElementById("navbar-toggler");
+      const menu = document.getElementById("mobile-menu");
+      toggler.addEventListener("click", () => {
+        menu.classList.toggle("active");
+      });
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.remove("active");
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

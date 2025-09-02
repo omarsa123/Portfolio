@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home - Data Analyst Portfolio</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body
+    class="text-light d-flex flex-column min-vh-100"
+    style="background-color: #121212"
+  >
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+          <div class="d-block d-lg-none welcome-text">Enjoy your visit</div>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            id="navbar-toggler"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav w-100 justify-content-around d-none d-lg-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="About Me.html"
+                ><i class="fas fa-user"></i> About Me</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sample-work.html"
+                ><i class="fas fa-project-diagram"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skills-certificates.html"
+                ><i class="fas fa-star"></i> Skills & Certificates</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="experience.html"
+                ><i class="fas fa-graduation-cap"></i> Experience &
+                Education</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="About Me.html"><i class="fas fa-user"></i> About Me</a>
+        <a href="sample-work.html"
+          ><i class="fas fa-project-diagram"></i> Projects</a
+        >
+        <a href="skills-certificates.html"
+          ><i class="fas fa-star"></i> Skills & Certificates</a
+        >
+        <a href="experience.html"
+          ><i class="fas fa-graduation-cap"></i> Experience & Education</a
+        >
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </header>
+    <main
+      class="container flex-grow-1 d-flex flex-column flex-md-row align-items-center gap-4 py-4"
+    >
+      <div class="d-flex flex-column align-items-center gap-4">
+        <div id="text-container" class="fs-5 lh-base"></div>
+        <div class="mt-4 d-flex gap-3 flex-wrap justify-content-center">
+          <a href="Omar_Hesham_CV.pdf" target="_blank" class="btn btn-primary" id="cv-btn">
+            View My CV
+          </a>
+          <button id="sample-work-btn" class="btn btn-primary">
+            Show My Projects
+          </button>
+          <button id="connect-btn" class="btn btn-primary">
+            Let's Connect
+          </button>
+        </div>
+      </div>
+      <div class="flex-shrink-0">
+        <img
+          src="content.png"
+          alt="Profile Picture"
+          class="rounded-circle img-fluid"
+          style="max-width: 250px; width: 100%; height: auto"
+        />
+      </div>
+    </main>
+
+    <script>
+      const texts = [
+        "Hi, I'm Omar Hesham",
+        "Data Analyst",
+        "I bridge the gap between data and business needs by delivering clear insights that support smarter, faster decisions.",
+      ];
+
+      function typeText(element, text, delay = 30) {
+        return new Promise((resolve) => {
+          let i = 0;
+          function typing() {
+            if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+              setTimeout(typing, delay);
+            } else {
+              resolve();
+            }
+          }
+          typing();
+        });
+      }
+
+      async function typeAllTexts() {
+        const container = document.getElementById("text-container");
+        container.textContent = "";
+        for (const text of texts) {
+          const p = document.createElement("p");
+          p.classList.add("mb-1");
+          if (container.children.length === 0) {
+            p.classList.add("fs-2", "fw-bold");
+          } else if (container.children.length === 1) {
+            p.classList.add("fs-4", "fw-semibold");
+          } else {
+            p.classList.add("fs-6");
+          }
+          container.appendChild(p);
+          await typeText(p, text);
+          await new Promise((r) => setTimeout(r, 300)); // pause between texts
+        }
+      }
+
+      // typeAllTexts();
+
+      // Set text directly without animation
+      const container = document.getElementById("text-container");
+      container.innerHTML = `
+        <h1 class="display-4 fw-bold text-primary mb-3">${texts[0]}</h1>
+        <h2 class="text-info mb-3">${texts[1]}</h2>
+        <p class="lead text-light">${texts[2]}</p>
+      `;
+
+      // Add raise animation CSS
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes riseUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .rise-animate {
+          animation: riseUp 0.8s ease-out;
+        }
+        @keyframes raiseText {
+          0% {
+            transform: translateX(-20px);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        @keyframes raisePhoto {
+          0% {
+            transform: translateX(20px);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        @keyframes glow {
+          0% {
+            box-shadow: 0 0 5px #90caf9;
+          }
+          50% {
+            box-shadow: 0 0 20px #90caf9, 0 0 30px #90caf9;
+          }
+          100% {
+            box-shadow: 0 0 5px #90caf9;
+          }
+        }
+        #text-container {
+          opacity: 1;
+          animation: raiseText 1s ease forwards;
+        }
+        .flex-shrink-0 {
+          opacity: 1;
+          animation: raisePhoto 1s ease forwards;
+        }
+        #sample-work-btn, #connect-btn, #cv-btn {
+          background: linear-gradient(45deg, #90caf9, #e0e0e0);
+          border: none;
+          border-radius: 50px;
+          padding: 15px 30px;
+          font-size: 1.2rem;
+          font-weight: bold;
+          color: #121212;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(144, 202, 249, 0.4);
+          text-decoration: none;
+          display: inline-block;
+        }
+        #sample-work-btn:hover, #connect-btn:hover, #cv-btn:hover {
+          transform: scale(1.1);
+          box-shadow: 0 8px 25px rgba(144, 202, 249, 0.6);
+          animation: glow 2s infinite;
+        }
+        #sample-work-btn::before, #connect-btn::before, #cv-btn::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.5s;
+        }
+        #sample-work-btn:hover::before, #connect-btn:hover::before, #cv-btn:hover::before {
+          left: 100%;
+        }
+
+        .nav-link {
+          transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+          color: #90caf9 !important;
+          text-shadow: 0 0 10px #90caf9;
+          transform: scale(1.05);
+        }
+        #mobile-menu {
+          position: fixed;
+          top: 56px;
+          left: 0;
+          width: 100%;
+          background-color: #121212;
+          transform: translateY(-100%);
+          opacity: 0;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+          z-index: 1000;
+          display: flex;
+          flex-direction: column;
+          padding: 1rem;
+        }
+        #mobile-menu.active {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        #mobile-menu a {
+          color: #e0e0e0;
+          text-decoration: none;
+          padding: 0.5rem 0;
+          border-bottom: 1px solid #333;
+        }
+        #mobile-menu a:hover {
+          color: #90caf9;
+        }
+        @media (min-width: 992px) {
+          #mobile-menu {
+            display: none;
+          }
+        }
+        .welcome-text {
+          font-style: italic;
+          color: #90caf9;
+          text-shadow: 0 0 5px #90caf9;
+          font-size: 1.1rem;
+          font-weight: bold;
+          animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+          from {
+            text-shadow: 0 0 5px #90caf9;
+          }
+          to {
+            text-shadow: 0 0 10px #90caf9, 0 0 20px #90caf9;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Add click event for navigation
+      const btn = document.getElementById("sample-work-btn");
+      btn.addEventListener("click", () => {
+        window.location.href = "sample-work.html";
+      });
+      const connectBtn = document.getElementById("connect-btn");
+      connectBtn.addEventListener("click", () => {
+        window.location.href = "contact.html";
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("rise-animate");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(document.querySelector("#text-container"));
+      observer.observe(document.querySelector(".flex-shrink-0"));
+
+      const toggler = document.getElementById('navbar-toggler');
+      const menu = document.getElementById('mobile-menu');
+      toggler.addEventListener('click', () => {
+        menu.classList.toggle('active');
+      });
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('active');
+        });
+      });
+    </script>
+    <!-- Bootstrap JS Bundle CDN (Popper + Bootstrap JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,3 @@
+- [x] Convert USP points to bulleted list with icons
+- [x] Restructure About Me text into paragraphs and reduce line breaks
+- [x] Remove unnecessary whitespace in HTML code

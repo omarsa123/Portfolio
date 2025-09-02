@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Me - Morgan Maxwell</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .image-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .image-section img {
+        max-width: 500px;
+        height: auto;
+        box-shadow: 0 0 40px white, 0 0 80px rgba(255, 255, 255, 0.5),
+          inset 0 0 20px rgba(0, 0, 0, 0.3);
+        display: block;
+        border-radius: 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .image-section img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 60px white, 0 0 120px rgba(255, 255, 255, 0.7),
+          inset 0 0 30px rgba(0, 0, 0, 0.5);
+      }
+      .text-section {
+        flex: 1;
+        padding: 2rem;
+      }
+      @media (max-width: 768px) {
+        .image-section {
+          width: 100%;
+        }
+        .image-section img {
+          width: 100%;
+          height: auto;
+          box-shadow: 0 0 40px white, 0 0 80px rgba(255, 255, 255, 0.5),
+            inset 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .text-section {
+          padding: 2rem;
+        }
+      }
+      .nav-link {
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #90caf9 !important;
+        text-shadow: 0 0 10px #90caf9;
+        transform: scale(1.05);
+      }
+      @keyframes riseUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rise-animate {
+        animation: riseUp 0.8s ease-out;
+      }
+      #mobile-menu {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        width: 100%;
+        background-color: #121212;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+      }
+      #mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      #mobile-menu a {
+        color: #e0e0e0;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #333;
+      }
+      #mobile-menu a:hover {
+        color: #90caf9;
+      }
+      @media (min-width: 992px) {
+        #mobile-menu {
+          display: none;
+        }
+      }
+      .usp-title {
+        font-weight: bold;
+        background: linear-gradient(45deg, #1e40af, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+      }
+      .usp-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        max-width: 800px;
+        margin: 0 auto;
+        color: white;
+      }
+      .usp-point {
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+      .usp-point i {
+        color: white;
+        margin-right: 0.5rem;
+      }
+      .usp-point strong {
+        color: white;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        letter-spacing: 0.5px;
+      }
+      .usp-title {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .usp-point {
+        font-weight: 500;
+        text-align: justify;
+      }
+      #about-text {
+        font-size: 1.1rem;
+        color: #f0f0f0;
+        text-align: justify;
+        font-style: normal;
+      }
+      address {
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #90caf9;
+      }
+      /* Desktop styles for text justification */
+      .usp-point,
+      #about-text p {
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      @media (max-width: 768px) {
+        .usp-title {
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+        }
+        .usp-card {
+          margin: 0 1rem;
+          padding: 1rem;
+        }
+        .usp-point {
+          font-size: 1.1rem;
+          line-height: 1.8;
+          margin-bottom: 2rem;
+          text-align: left;
+          word-spacing: normal;
+          letter-spacing: normal;
+          hyphens: auto;
+          -webkit-hyphens: auto;
+          -moz-hyphens: auto;
+        }
+        .content-section {
+          flex-direction: column;
+        }
+        #about-text {
+          font-size: 1.2rem;
+          line-height: 1.8;
+        }
+        #about-text p {
+          text-align: left;
+          word-spacing: normal;
+          letter-spacing: normal;
+          hyphens: auto;
+          -webkit-hyphens: auto;
+          -moz-hyphens: auto;
+        }
+      }
+      .welcome-text {
+        font-style: italic;
+        color: #90caf9;
+        text-shadow: 0 0 5px #90caf9;
+        font-size: 1.1rem;
+        font-weight: bold;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 5px #90caf9;
+        }
+        to {
+          text-shadow: 0 0 10px #90caf9, 0 0 20px #90caf9;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div
+          class="container-fluid d-flex justify-content-between align-items-center"
+        >
+          <div class="d-block d-lg-none welcome-text">Enjoy your visit</div>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            id="navbar-toggler"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav w-100 justify-content-around d-none d-lg-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="About Me.html"
+                ><i class="fas fa-user"></i> About Me</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sample-work.html"
+                ><i class="fas fa-project-diagram"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skills-certificates.html"
+                ><i class="fas fa-star"></i> Skills & Certificates</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="experience.html"
+                ><i class="fas fa-graduation-cap"></i> Experience & Education</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="About Me.html"><i class="fas fa-user"></i> About Me</a>
+        <a href="sample-work.html"
+          ><i class="fas fa-project-diagram"></i> Projects</a
+        >
+        <a href="skills-certificates.html"
+          ><i class="fas fa-star"></i> Skills & Certificates</a
+        >
+        <a href="experience.html"
+          ><i class="fas fa-graduation-cap"></i> Experience & Education</a
+        >
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </header>
+    <main
+      class="d-flex flex-column justify-content-center align-items-center gap-4 pt-2 px-4 rise-animate"
+      style="
+        background-color: #1f1f1f;
+        color: #e0e0e0;
+        min-height: 100vh;
+        position: relative;
+      "
+    >
+      <section class="usp-section rise-animate">
+        <div class="container">
+          <h2 class="usp-title text-center">
+            Why I’m the Right Choice for Your Data
+          </h2>
+          <div class="usp-card card">
+            <div class="card-body">
+              <p class="usp-point">
+                Numbers are messy — I transform them into crystal-clear insights
+                using Excel, SQL, Python, and Power BI, tailored for startups
+                and e-commerce to drive 20% faster decisions.
+              </p>
+              <p class="usp-point">
+                Deadlines? I treat them like unbreakable promises—met 100% on
+                time across 50+ projects.
+              </p>
+              <p class="usp-point">
+                Speed and precision go hand in hand in every dashboard and
+                analysis I deliver.
+              </p>
+              <p class="usp-point">
+                All at a fair price that delivers real business value and ROI.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="flex-fill text-section rise-animate">
+        <h2 class="usp-title text-center">About Me</h2>
+        <div class="usp-card card">
+          <div class="card-body">
+            <div id="about-text"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      const aboutText = `
+        <p>I’m a motivated Data Analyst with hands-on experience in Excel, SQL, Python, and Power BI.</p>
+        <p>My expertise lies in collecting, cleaning, transforming, and analyzing data to uncover actionable insights that support smarter, data-driven decisions.</p>
+        <p>Through my internship with the Digital Egypt Pioneers Initiative, I gained practical experience in analyzing large datasets, building interactive dashboards, and applying statistical techniques to solve real-world problems.</p>
+        <p>I bring together strong technical skills and soft skills like analytical thinking, problem-solving, attention to detail, and time management — ensuring that every project is delivered with both precision and reliability.</p>
+        <p>My goal is simple: to turn raw data into meaningful, impactful solutions that help businesses and individuals make better decisions.</p>
+      `;
+
+      function typeText(element, text, delay = 30) {
+        return new Promise((resolve) => {
+          let i = 0;
+          function typing() {
+            if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+              setTimeout(typing, delay);
+            } else {
+              resolve();
+            }
+          }
+          typing();
+        });
+      }
+
+      // typeText(document.getElementById("about-text"), aboutText);
+      document.getElementById("about-text").innerHTML = aboutText;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("rise-animate");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(document.querySelector(".usp-section"));
+      observer.observe(document.querySelector(".text-section"));
+
+      const toggler = document.getElementById("navbar-toggler");
+      const menu = document.getElementById("mobile-menu");
+      toggler.addEventListener("click", () => {
+        menu.classList.toggle("active");
+      });
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.remove("active");
+        });
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skills & Certificates - Morgan Maxwell</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .nav-link {
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #90caf9 !important;
+        text-shadow: 0 0 10px #90caf9;
+        transform: scale(1.05);
+      }
+      @keyframes riseUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rise-animate {
+        animation: riseUp 0.8s ease-out;
+      }
+      #mobile-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #121212;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+      }
+      #mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      #mobile-menu a {
+        color: #e0e0e0;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #333;
+      }
+      #mobile-menu a:hover {
+        color: #90caf9;
+      }
+      @media (min-width: 992px) {
+        #mobile-menu {
+          display: none;
+        }
+      }
+      .welcome-text {
+        font-style: italic;
+        color: #90caf9;
+        text-shadow: 0 0 5px #90caf9;
+        font-size: 1.1rem;
+        font-weight: bold;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 5px #90caf9;
+        }
+        to {
+          text-shadow: 0 0 10px #90caf9, 0 0 20px #90caf9;
+        }
+      }
+      @media (max-width: 768px) {
+        .skills-grid {
+          justify-content: center;
+        }
+        .skill-card {
+          text-align: center;
+          margin-bottom: 1rem;
+        }
+      }
+    </style>
+</head>
+<body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+          <div class="d-block d-lg-none welcome-text">Enjoy your visit</div>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            id="navbar-toggler"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav w-100 justify-content-around d-none d-lg-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="About Me.html"
+                ><i class="fas fa-user"></i> About Me</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sample-work.html"
+                ><i class="fas fa-project-diagram"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skills-certificates.html"
+                ><i class="fas fa-star"></i> Skills & Certificates</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="experience.html"
+                ><i class="fas fa-graduation-cap"></i> Experience &
+                Education</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="About Me.html"><i class="fas fa-user"></i> About Me</a>
+        <a href="sample-work.html"><i class="fas fa-project-diagram"></i> Projects</a>
+        <a href="skills-certificates.html"><i class="fas fa-star"></i> Skills & Certificates</a>
+        <a href="experience.html"><i class="fas fa-graduation-cap"></i> Experience & Education</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </header>
+    <main>
+      <section class="skills-section">
+        <h2 class="skills-title">Skills</h2>
+        <div class="skills-container row justify-content-center">
+          <div class="skills-category col-lg-4 col-md-6 col-sm-12">
+            <h3>Technical Skills</h3>
+            <div class="skills-grid row">
+              <div class="skill-card col-6 col-md-4">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-file-excel"></i>
+                <span>Excel</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-database"></i>
+                <span>SQL</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-chart-bar"></i>
+                <span>Power BI</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-table"></i>
+                <span>Tableau</span>
+              </div>
+            </div>
+          </div>
+          <div class="skills-category col-lg-4 col-md-6 col-sm-12">
+            <h3>Soft Skills</h3>
+            <div class="skills-grid row">
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-users"></i>
+                <span>Teamwork</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-lightbulb"></i>
+                <span>Problem Solving</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-clock"></i>
+                <span>Time Management</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-comments"></i>
+                <span>Communication</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-book"></i>
+                <span>Self-Learning</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-brain"></i>
+                <span>Analytical Thinking</span>
+              </div>
+              <div class="skill-card col-6 col-md-4">
+                <i class="fas fa-brain"></i>
+                <span>Critical Thinking</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <section class="certifications-section" style="margin-top: 3rem;">
+          <h2 class="certifications-title text-center mb-4">Certifications</h2>
+          <div id="certificationsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="certification-card">
+                  <div class="cert-image-container">
+                    <img src="Intro.png" alt="Intro to Excel Certificate" class="cert-image" />
+                  </div>
+                  <div class="cert-text text-center mt-2">
+                    <p><strong>Intro to Excel</strong></p>
+                    <p>DataCamp</p>
+                    <p>29/6/2025</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="certification-card">
+                  <div class="cert-image-container">
+                    <img src="Preperation.png" alt="Data Preparation in Excel Certificate" class="cert-image" />
+                  </div>
+                  <div class="cert-text text-center mt-2">
+                    <p><strong>Data Preparation in Excel</strong></p>
+                    <p>DataCamp</p>
+                    <p>1/8/2025</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="certification-card">
+                  <div class="cert-image-container">
+                    <img src="AICertficate.png" alt="Intro To Ai Agent Certificate" class="cert-image" />
+                  </div>
+                  <div class="cert-text text-center mt-2">
+                    <p><strong>Intro To Ai Agent</strong></p>
+                    <p>DataCamp</p>
+                    <p>14/8/2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#certificationsCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#certificationsCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('rise-animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(document.querySelector('main'));
+
+      const toggler = document.getElementById('navbar-toggler');
+      const menu = document.getElementById('mobile-menu');
+      toggler.addEventListener('click', () => {
+        menu.classList.toggle('active');
+      });
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('active');
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

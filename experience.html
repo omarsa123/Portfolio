@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Experience & Education - Morgan Maxwell</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .nav-link {
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #90caf9 !important;
+        text-shadow: 0 0 10px #90caf9;
+        transform: scale(1.05);
+      }
+      @keyframes riseUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rise-animate {
+        animation: riseUp 0.8s ease-out;
+      }
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #90caf9;
+        text-shadow: 0 0 10px #90caf9;
+      }
+      .timeline-container {
+        position: relative;
+        max-width: 900px;
+        width: 100%;
+        padding: 2rem 0;
+      }
+      .timeline-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 3px;
+        background: linear-gradient(180deg, #00ffff, #0077ff);
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #0077ff;
+        transform: translateX(-50%);
+        border-radius: 2px;
+        z-index: 1;
+        transition: left 0.3s ease;
+      }
+      .timeline-item {
+        position: relative;
+        width: 45%;
+        margin-bottom: 4rem;
+        opacity: 0;
+        transform: translateX(0);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .timeline-item.left {
+        left: 0;
+        text-align: right;
+        margin-left: 0;
+      }
+      .timeline-item.right {
+        left: 55%;
+        text-align: left;
+        margin-left: 0;
+      }
+      .timeline-marker {
+        position: absolute;
+        top: 1rem;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #00ffff, #0077ff);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px #00ffff, 0 0 25px #0077ff;
+        z-index: 2;
+        border: 3px solid #121212;
+        transition: left 0.3s ease, right 0.3s ease;
+      }
+      .timeline-item.left .timeline-marker {
+        right: -25px;
+        left: auto;
+      }
+      .timeline-item.right .timeline-marker {
+        left: -25px;
+        right: auto;
+      }
+      .timeline-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+        color: #e0e0e0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .timeline-content:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 40px rgba(0, 255, 255, 0.4), 0 0 30px #00ffff;
+      }
+      .timeline-content h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: #00ffff;
+        font-size: 1.3rem;
+      }
+      .timeline-content .subtitle {
+        font-style: italic;
+        margin-bottom: 1rem;
+        color: #90caf9;
+      }
+      .timeline-content p {
+        margin: 0.3rem 0;
+        line-height: 1.5;
+      }
+      .timeline-content ul {
+        margin: 0;
+        padding-left: 1.5rem;
+      }
+      .timeline-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }
+
+      .timeline-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .timeline-item.left.visible {
+        transform: translateX(0);
+      }
+      .timeline-item.right.visible {
+        transform: translateX(0);
+      }
+      /* Responsive */
+      @media (max-width: 768px) {
+        .timeline-line {
+          left: 20px;
+          width: 2px;
+        }
+        .timeline-item {
+          width: 90%;
+          margin-bottom: 3rem;
+          text-align: left !important;
+          left: 40px !important;
+          transform: translateX(0) !important;
+          opacity: 1 !important;
+        }
+        .timeline-item.left,
+        .timeline-item.right {
+          left: 40px !important;
+          text-align: left !important;
+        }
+        .timeline-item .timeline-marker {
+          left: -35px !important;
+          right: auto !important;
+        }
+      }
+      #mobile-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #121212;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+      }
+      #mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      #mobile-menu a {
+        color: #e0e0e0;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #333;
+      }
+      #mobile-menu a:hover {
+        color: #90caf9;
+      }
+      @media (min-width: 992px) {
+        #mobile-menu {
+          display: none;
+        }
+      }
+      .welcome-text {
+        font-style: italic;
+        color: #90caf9;
+        text-shadow: 0 0 5px #90caf9;
+        font-size: 1.1rem;
+        font-weight: bold;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 5px #90caf9;
+        }
+        to {
+          text-shadow: 0 0 10px #90caf9, 0 0 20px #90caf9;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+          <div class="d-block d-lg-none welcome-text">Enjoy your visit</div>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            id="navbar-toggler"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav w-100 justify-content-around d-none d-lg-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="About Me.html"
+                ><i class="fas fa-user"></i> About Me</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sample-work.html"
+                ><i class="fas fa-project-diagram"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skills-certificates.html"
+                ><i class="fas fa-star"></i> Skills & Certificates</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="experience.html"
+                ><i class="fas fa-graduation-cap"></i> Experience & Education</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="About Me.html"><i class="fas fa-user"></i> About Me</a>
+        <a href="sample-work.html"
+          ><i class="fas fa-project-diagram"></i> Projects</a
+        >
+        <a href="skills-certificates.html"
+          ><i class="fas fa-star"></i> Skills & Certificates</a
+        >
+        <a href="experience.html"
+          ><i class="fas fa-graduation-cap"></i> Experience & Education</a
+        >
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </header>
+    <main style="margin-top: 80px">
+      <section class="timeline-section">
+        <h2 class="section-title">Education & Experience</h2>
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          <div class="timeline-item experience right">
+            <div class="timeline-marker">
+              <span class="icon">💼</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Digital Egypt Pioneers Initiative (DEPI)</h3>
+              <p class="subtitle">Data Analysis Track</p>
+              <ul>
+                <li>
+                  Analyzed large datasets using Excel and Python to extract
+                  insights and detect patterns.
+                </li>
+                <li>
+                  Cleaned, joined, and transformed raw data using SQL and Power
+                  Query.
+                </li>
+                <li>
+                  Designed interactive dashboards in Power BI to visualize KPIs.
+                </li>
+              </ul>
+
+            </div>
+          </div>
+          <div class="timeline-item education left">
+            <div class="timeline-marker">
+              <span class="icon">🎓</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Bachelor of science - Ain Shams University   </h3>
+              <p class="subtitle">Computer Science Program</p>
+              <p>Grade : B</p>
+              <p>2023 – 2027</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const timelineItems = document.querySelectorAll(".timeline-item");
+        const timelineLine = document.querySelector(".timeline-line");
+
+        // Initial states
+        timelineItems.forEach((item, index) => {
+          item.style.opacity = "0";
+          if (item.classList.contains("left")) {
+            item.style.transform = "translateX(-100px)";
+          } else {
+            item.style.transform = "translateX(100px)";
+          }
+        });
+        timelineLine.style.height = "0";
+
+        // Animate timeline line and items on scroll
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, index) => {
+              if (entry.isIntersecting) {
+                // Animate timeline line
+                setTimeout(() => {
+                  timelineLine.style.transition = "height 1.5s ease";
+                  timelineLine.style.height = "100%";
+                }, 200);
+
+                // Animate items with stagger
+                timelineItems.forEach((item, itemIndex) => {
+                  setTimeout(() => {
+                    item.style.transition =
+                      "opacity 0.8s ease, transform 0.8s ease";
+                    item.style.opacity = "1";
+                    item.style.transform = "translateX(0)";
+                  }, 600 + itemIndex * 300);
+                });
+
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        // Observe the timeline container
+        const timelineContainer = document.querySelector(".timeline-container");
+        observer.observe(timelineContainer);
+      });
+
+      const toggler = document.getElementById("navbar-toggler");
+      const menu = document.getElementById("mobile-menu");
+      toggler.addEventListener("click", () => {
+        menu.classList.toggle("active");
+      });
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.remove("active");
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
